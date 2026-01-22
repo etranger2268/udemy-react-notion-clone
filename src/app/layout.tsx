@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import { inter, notoSansJP } from '@/lib/font';
 import './globals.css';
+import '@/app/globals.css';
+import Footer from '@/app/_components/Footer';
+import Header from '@/app/_components/Header';
 
 type RootLayoutProps = Readonly<{
   children: React.ReactNode;
@@ -14,8 +17,18 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="ja">
-      <body className={`${inter.variable} ${notoSansJP.variable} antialiased font-sans`}>
-        {children}
+      <body
+        className={`${inter.variable} ${notoSansJP.variable} antialiased font-sans bg-background`}
+      >
+        <div className="flex flex-col h-screen">
+          <header className="h-20 shrink-0">
+            <Header />
+          </header>
+          <main className="flex-1">{children}</main>
+          <footer className="h-20 shrink-0">
+            <Footer />
+          </footer>
+        </div>
       </body>
     </html>
   );
